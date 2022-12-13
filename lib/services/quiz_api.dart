@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-String baseUrl = 'http://192.168.0.66:8000/';
+String baseUrl = 'https://quvvatullayevogabek.pythonanywhere.com/';
 
 Future getQuiz() async {
   Uri url = Uri.parse('${baseUrl}quiz_list/');
@@ -20,6 +20,13 @@ class Services {
     Map dataFromJson = jsonDecode(response.body);
     print(dataFromJson.runtimeType);
     return dataFromJson;
+  }
+
+  static Future getQuestion({id}) async {
+    http.Response response =
+        await http.get(Uri.parse('${baseUrl}question_list/$id'));
+    Map jsonData = jsonDecode(response.body);
+    return jsonData;
   }
 }
 

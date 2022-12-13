@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 
 import '../services/quiz_api.dart';
 
-class QuizOptions extends StatefulWidget {
-  final String quiz;
+class OptionTile extends StatefulWidget {
+  final String option;
   final int index;
-  QuizOptions({super.key, required this.quiz, required this.index});
+  OptionTile({super.key, required this.option, required this.index});
 
   @override
-  State<QuizOptions> createState() => _QuizOptionsState();
+  State<OptionTile> createState() => _OptionTileState();
 }
 
 int? _groupValue;
 
-class _QuizOptionsState extends State<QuizOptions> {
+class _OptionTileState extends State<OptionTile> {
   @override
   Widget build(BuildContext context) {
     return RadioListTile(
-      title: Text(widget.quiz),
+      title: Text(widget.option),
       value: widget.index,
       groupValue: _groupValue,
       onChanged: (value) {

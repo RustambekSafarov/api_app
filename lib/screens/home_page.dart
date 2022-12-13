@@ -1,6 +1,6 @@
 import 'package:api_app/services/quiz_api.dart';
 import 'package:api_app/widgets/subjects.dart';
-import 'package:api_app/widgets/widget.dart';
+import 'package:api_app/widgets/option.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -33,13 +33,15 @@ class _HomePageState extends State<HomePage> {
         body: Container(
           child: FutureBuilder(
             future: getQuiz(),
-            builder: (context,AsyncSnapshot snapshot) {
+            builder: (context, AsyncSnapshot snapshot) {
               print(snapshot.connectionState);
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: CircularProgressIndicator());
-              } else if(snapshot.hasError){
-                return Center(child: Text('Error'),);
-              }else{
+                return const Center(child: CircularProgressIndicator());
+              } else if (snapshot.hasError) {
+                return const Center(
+                  child: Text('Error'),
+                );
+              } else {
                 return Subjects(subjects: snapshot.data);
               }
             },
@@ -47,6 +49,7 @@ class _HomePageState extends State<HomePage> {
         ));
   }
 }
+
 /* Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

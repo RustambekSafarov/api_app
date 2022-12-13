@@ -1,11 +1,17 @@
-import 'package:api_app/services/quiz_api.dart';
-import 'package:api_app/widgets/topics.dart';
+import 'package:api_app/widgets/question.dart';
 import 'package:flutter/material.dart';
 
-class TopicsPage extends StatelessWidget {
-  final int id;
-  const TopicsPage({super.key, required this.id});
+import '../services/quiz_api.dart';
 
+class QuestionPage extends StatefulWidget {
+  final int id;
+  const QuestionPage({super.key, required this.id});
+
+  @override
+  State<QuestionPage> createState() => _QuestionPageState();
+}
+
+class _QuestionPageState extends State<QuestionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +19,7 @@ class TopicsPage extends StatelessWidget {
         title: const Text('Topics'),
       ),
       body: FutureBuilder(
-        future: Services.getTopic(id: id),
+        future: Services.getQuestion(id: widget.id),
         builder: (context, snapshot) {
           print(snapshot.connectionState);
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -22,8 +28,11 @@ class TopicsPage extends StatelessWidget {
             return const Center(
               child: Text('Error'),
             );
+          } else if (snapshot.hasData) {
+            return QuestionWidget(
+                questions: snapshot.data['topic']['questions']);
           } else {
-            return TopicsWidget(topics: snapshot.data['quiz']['topics']);
+            return Text('No question');
           }
         },
       ),
