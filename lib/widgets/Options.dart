@@ -1,19 +1,34 @@
 // ignore_for_file: file_names
 
-import 'option.dart';
 import 'package:flutter/material.dart';
 
-class OptionList extends StatelessWidget {
+class OptionList extends StatefulWidget {
   final List options;
   const OptionList({super.key, required this.options});
 
   @override
+  State<OptionList> createState() => _OptionListState();
+}
+
+int? _groupValue;
+
+class _OptionListState extends State<OptionList> {
+  @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: options.length,
-      itemBuilder: (context, index) {
-        return OptionTile(option: options[index]['option'], index: index);
-      },
+    return Column(
+      children: widget.options
+          .map((e) => RadioListTile(
+                title: Text(e['option']),
+                value: e['id'],
+                groupValue: _groupValue,
+                onChanged: (value) {
+                  setState(() {
+                    print(value);
+                    _groupValue = value;
+                  });
+                },
+              ))
+          .toList(),
     );
   }
 }

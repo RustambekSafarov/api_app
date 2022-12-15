@@ -1,4 +1,3 @@
-import 'package:api_app/widgets/option.dart';
 import 'package:flutter/material.dart';
 
 import 'Options.dart';
@@ -19,7 +18,7 @@ class QuestionWidget extends StatelessWidget {
               title: Text('${index + 1}. ${questions[index]['question']}'),
             ),
             OptionList(
-              options: questions[index]['options'],
+              options: questions[index]['optons'],
             ),
           ],
         );

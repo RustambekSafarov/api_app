@@ -1,6 +1,5 @@
 import 'package:api_app/services/quiz_api.dart';
 import 'package:api_app/widgets/subjects.dart';
-import 'package:api_app/widgets/option.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

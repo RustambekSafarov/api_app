@@ -16,7 +16,7 @@ class _QuestionPageState extends State<QuestionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Topics'),
+        title: const Text('Questions'),
       ),
       body: FutureBuilder(
         future: Services.getQuestion(id: widget.id),
